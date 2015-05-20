@@ -1,4 +1,4 @@
 # This is a placeholder class.
-class template {
+class vault {
   anchor { 'Hello_World': }
 }
