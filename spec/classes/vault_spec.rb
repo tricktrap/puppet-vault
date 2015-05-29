@@ -17,7 +17,7 @@ describe 'vault' do
       [
         "rm -rf /tmp/vault* /tmp/0",
         # download the zip to tmp
-        "curl http://dl.bintray.com/mitchellh/vault/vault_0.9.9_darwin_amd64.zip?direct > /tmp/vault-v0.9.9.zip",
+        "curl http://dl.bintray.com/mitchellh/vault/vault_0.9.9_darwin_amd64.zip?direct -L > /tmp/vault-v0.9.9.zip",
         # extract the zip to tmp spot
         "mkdir /tmp/vault",
         "unzip -o /tmp/vault-v0.9.9.zip -d /tmp/vault",

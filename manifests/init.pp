@@ -18,7 +18,7 @@ class vault(
         # blow away any previous attempts
         "rm -rf /tmp/vault* /tmp/${extracted_dirname}",
         # download the zip to tmp
-        "curl ${download_uri} > /tmp/vault-v${version}.zip",
+        "curl ${download_uri} -L > /tmp/vault-v${version}.zip",
         # extract the zip to tmp spot
         'mkdir /tmp/vault',
         "unzip -o /tmp/vault-v${version}.zip -d /tmp/vault",
