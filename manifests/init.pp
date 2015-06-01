@@ -33,6 +33,7 @@ class vault(
       exec { 
         "install vault v${version}":
           command => $install_command,
+          unless  => "${root}/vault --version | grep 'Vault'",
           user    => $user,
       }
       
