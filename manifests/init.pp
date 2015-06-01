@@ -9,7 +9,7 @@ class vault(
   case $ensure {
     present: {
       $download_uri = "http://dl.bintray.com/mitchellh/vault/vault_${version}_${vault::params::_real_platform}.zip?direct"
-      
+
       # the dir inside the zipball uses the major version number segment
       $major_version = split($version, '[.]')
       $extracted_dirname = $major_version[0]
@@ -29,28 +29,28 @@ class vault(
         # chown it
         "chown -R ${user} ${root}"
       ], ' && ')
-      
-      exec { 
+
+      exec {
         "install vault v${version}":
           command => $install_command,
           unless  => "${root}/vault --version | grep 'Vault'",
           user    => $user,
       }
-      
+
       if $::operatingsystem == 'Darwin' {
         include boxen::config
-        
+
         boxen::env_script { 'vault':
           content  => template('vault/env.sh.erb'),
           priority => 'lower',
         }
-        
-        file { "${boxen::config::envdir}/vault.sh": 
+
+        file { "${boxen::config::envdir}/vault.sh":
           ensure => absent,
         }
       }
     }
-    
+
     absent: {
       file{ $root:
         ensure  => absent,
@@ -58,7 +58,7 @@ class vault(
         force   => true,
       }
     }
-    
+
     default: {
       fail('Ensure must be present or absent')
     }
