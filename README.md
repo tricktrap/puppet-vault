@@ -2,8 +2,7 @@
 
 Quick, easy installation of a local Vault via Boxen.
 
-[![Build Status](https://travis-ci.org/boxen/puppet-template.svg?branch=master)](https://travis-ci.org/boxen/puppet-template)
-
+[![Build Status](https://travis-ci.org/tricktrap/puppet-vault.svg)](https://travis-ci.org/tricktrap/puppet-vault)
 ## Usage
 
 ```puppet
