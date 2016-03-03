@@ -12,7 +12,7 @@ class vault(
 
       $install_command = join([
         # blow away any previous attempts
-        "rm -rf /tmp/vault",
+        'rm -rf /tmp/vault',
         # download the zip to tmp
         "curl ${download_uri} -L > /tmp/vault-v${version}.zip",
         # extract the zip to tmp spot
