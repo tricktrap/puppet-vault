@@ -8,15 +8,11 @@ class vault(
 
   case $ensure {
     present: {
-      $download_uri = "http://dl.bintray.com/mitchellh/vault/vault_${version}_${vault::params::_real_platform}.zip?direct"
-
-      # the dir inside the zipball uses the major version number segment
-      $major_version = split($version, '[.]')
-      $extracted_dirname = $major_version[0]
+      $download_uri = "https://releases.hashicorp.com/vault/${version}/vault_${version}_darwin_amd64.zip"
 
       $install_command = join([
         # blow away any previous attempts
-        "rm -rf /tmp/vault* /tmp/${extracted_dirname}",
+        "rm -rf /tmp/vault",
         # download the zip to tmp
         "curl ${download_uri} -L > /tmp/vault-v${version}.zip",
         # extract the zip to tmp spot
@@ -33,7 +29,7 @@ class vault(
       exec {
         "install vault v${version}":
           command => $install_command,
-          unless  => "${root}/vault --version | grep 'Vault'",
+          unless  => "test -d ${root} && test -x ${root}/vault && ${root}/vault --version | grep 'Vault'",
           user    => $user,
       }
 
